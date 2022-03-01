@@ -1,0 +1,1051 @@
+[
+  {
+    "text": "No I cannot do another location. What if I increased my budget by $400?",
+    "intentName": "None",
+    "entityLabels": [
+      {
+        "entityName": "budget",
+        "startCharIndex": 43,
+        "endCharIndex": 70
+      }
+    ]
+  },
+  {
+    "text": "nor Coruscant?",
+    "intentName": "None",
+    "entityLabels": [
+      {
+        "entityName": "dst_city",
+        "startCharIndex": 4,
+        "endCharIndex": 13
+      }
+    ]
+  },
+  {
+    "text": "Ok thanks.",
+    "intentName": "None",
+    "entityLabels": []
+  },
+  {
+    "text": "Hi there, im from Vitoria and I want to go on vacation",
+    "intentName": "book",
+    "entityLabels": [
+      {
+        "entityName": "or_city",
+        "startCharIndex": 18,
+        "endCharIndex": 25
+      }
+    ]
+  },
+  {
+    "text": "I would like to go to Santo domingo",
+    "intentName": "None",
+    "entityLabels": [
+      {
+        "entityName": "dst_city",
+        "startCharIndex": 22,
+        "endCharIndex": 35
+      }
+    ]
+  },
+  {
+    "text": "yes that sounds fine, looking to leave on the 19th",
+    "intentName": "None",
+    "entityLabels": [
+      {
+        "entityName": "str_date",
+        "startCharIndex": 46,
+        "endCharIndex": 50
+      }
+    ]
+  },
+  {
+    "text": "what is the hotel like?",
+    "intentName": "None",
+    "entityLabels": []
+  },
+  {
+    "text": "what type of flight is that going to be?",
+    "intentName": "None",
+    "entityLabels": []
+  },
+  {
+    "text": "let\u2019s book it please",
+    "intentName": "book",
+    "entityLabels": []
+  },
+  {
+    "text": "Thank you",
+    "intentName": "None",
+    "entityLabels": []
+  },
+  {
+    "text": "Hi, me and my family want to take a trip to Kakariko Village.",
+    "intentName": "book",
+    "entityLabels": [
+      {
+        "entityName": "dst_city",
+        "startCharIndex": 44,
+        "endCharIndex": 60
+      }
+    ]
+  },
+  {
+    "text": "We are four adults and 11 children departing from Godric's Hollow. $3500 is the most we are willing to spend.",
+    "intentName": "None",
+    "entityLabels": [
+      {
+        "entityName": "or_city",
+        "startCharIndex": 50,
+        "endCharIndex": 65
+      },
+      {
+        "entityName": "budget",
+        "startCharIndex": 67,
+        "endCharIndex": 72
+      }
+    ]
+  },
+  {
+    "text": "I would not be able to spend more than $4500",
+    "intentName": "None",
+    "entityLabels": [
+      {
+        "entityName": "budget",
+        "startCharIndex": 39,
+        "endCharIndex": 44
+      }
+    ]
+  },
+  {
+    "text": "We'll catch a flight from Toronto then. We're headed for Kakariko Village.",
+    "intentName": "None",
+    "entityLabels": [
+      {
+        "entityName": "or_city",
+        "startCharIndex": 26,
+        "endCharIndex": 33
+      },
+      {
+        "entityName": "dst_city",
+        "startCharIndex": 57,
+        "endCharIndex": 73
+      }
+    ]
+  },
+  {
+    "text": "Ok, do you have any travel packages to Kingston, Canada for 11 kids and 4 adults, $3500 or less, departing from Toronto?",
+    "intentName": "None",
+    "entityLabels": [
+      {
+        "entityName": "dst_city",
+        "startCharIndex": 39,
+        "endCharIndex": 55
+      },
+      {
+        "entityName": "budget",
+        "startCharIndex": 82,
+        "endCharIndex": 87
+      },
+      {
+        "entityName": "or_city",
+        "startCharIndex": 112,
+        "endCharIndex": 119
+      }
+    ]
+  },
+  {
+    "text": "Do you have any information on what activities are included in the package?",
+    "intentName": "None",
+    "entityLabels": []
+  },
+  {
+    "text": "Is this a direct flight to Kingston or do we have to make a transfer? Are the tickets business class?",
+    "intentName": "None",
+    "entityLabels": [
+      {
+        "entityName": "dst_city",
+        "startCharIndex": 27,
+        "endCharIndex": 35
+      }
+    ]
+  },
+  {
+    "text": "Yes, I'll take it. Thank you",
+    "intentName": "book",
+    "entityLabels": []
+  },
+  {
+    "text": "Hi, I'm looking for a trip  from Thursday, August 18, 2016 to Thursday, September 8, 2016 to Mexico City",
+    "intentName": "book",
+    "entityLabels": [
+      {
+        "entityName": "str_date",
+        "startCharIndex": 33,
+        "endCharIndex": 58
+      },
+      {
+        "entityName": "end_date",
+        "startCharIndex": 62,
+        "endCharIndex": 89
+      },
+      {
+        "entityName": "dst_city",
+        "startCharIndex": 93,
+        "endCharIndex": 104
+      }
+    ]
+  },
+  {
+    "text": "Kingston",
+    "intentName": "None",
+    "entityLabels": [
+      {
+        "entityName": "or_city",
+        "startCharIndex": 0,
+        "endCharIndex": 8
+      }
+    ]
+  },
+  {
+    "text": "How many stars do the hotels have and what's included with the hotel?",
+    "intentName": "None",
+    "entityLabels": []
+  },
+  {
+    "text": "I prefer 3 stars and above. I'm flexible with my budget, is there anything else in Columbo?",
+    "intentName": "None",
+    "entityLabels": [
+      {
+        "entityName": "dst_city",
+        "startCharIndex": 83,
+        "endCharIndex": 90
+      }
+    ]
+  },
+  {
+    "text": "That's looking good. I want to see a few more options before I choose one. There's nothing available in Porto?",
+    "intentName": "None",
+    "entityLabels": [
+      {
+        "entityName": "dst_city",
+        "startCharIndex": 104,
+        "endCharIndex": 109
+      }
+    ]
+  },
+  {
+    "text": "Porto would be great. Can you tell me more about the hotel.",
+    "intentName": "None",
+    "entityLabels": [
+      {
+        "entityName": "dst_city",
+        "startCharIndex": 0,
+        "endCharIndex": 5
+      }
+    ]
+  },
+  {
+    "text": "Excellent. I'll stay at the Amistad for 13 days. Thanks for your help.",
+    "intentName": "book",
+    "entityLabels": []
+  },
+  {
+    "text": "Hi im from Caprica looking to book a vacation to Hyrule",
+    "intentName": "book",
+    "entityLabels": [
+      {
+        "entityName": "or_city",
+        "startCharIndex": 11,
+        "endCharIndex": 18
+      },
+      {
+        "entityName": "dst_city",
+        "startCharIndex": 49,
+        "endCharIndex": 55
+      }
+    ]
+  },
+  {
+    "text": "Ya for sure, not sure where, lets see what would fit my plans between the 13th of august and the 16th",
+    "intentName": "None",
+    "entityLabels": [
+      {
+        "entityName": "str_date",
+        "startCharIndex": 74,
+        "endCharIndex": 88
+      },
+      {
+        "entityName": "end_date",
+        "startCharIndex": 97,
+        "endCharIndex": 101
+      }
+    ]
+  },
+  {
+    "text": "How about if i leave fro Birmingham?",
+    "intentName": "None",
+    "entityLabels": [
+      {
+        "entityName": "or_city",
+        "startCharIndex": 25,
+        "endCharIndex": 35
+      }
+    ]
+  },
+  {
+    "text": "sure lets try Vancouver then",
+    "intentName": "None",
+    "entityLabels": [
+      {
+        "entityName": "dst_city",
+        "startCharIndex": 14,
+        "endCharIndex": 23
+      }
+    ]
+  },
+  {
+    "text": "I want to leave on the 13th of august and be back on the 16th",
+    "intentName": "None",
+    "entityLabels": [
+      {
+        "entityName": "str_date",
+        "startCharIndex": 23,
+        "endCharIndex": 37
+      },
+      {
+        "entityName": "end_date",
+        "startCharIndex": 57,
+        "endCharIndex": 61
+      }
+    ]
+  },
+  {
+    "text": "I want to leave on the 13th",
+    "intentName": "None",
+    "entityLabels": [
+      {
+        "entityName": "str_date",
+        "startCharIndex": 23,
+        "endCharIndex": 27
+      }
+    ]
+  },
+  {
+    "text": "you know none of these are meeting my requests. i will just go with another service. Thank you.",
+    "intentName": "None",
+    "entityLabels": []
+  },
+  {
+    "text": "Hey man, imma leave from Godric's Hollow on August 27, 2016 and go to Goiania. Can't pay more than 4300USD. Watcha got?",
+    "intentName": "book",
+    "entityLabels": [
+      {
+        "entityName": "or_city",
+        "startCharIndex": 25,
+        "endCharIndex": 40
+      },
+      {
+        "entityName": "str_date",
+        "startCharIndex": 44,
+        "endCharIndex": 59
+      },
+      {
+        "entityName": "dst_city",
+        "startCharIndex": 70,
+        "endCharIndex": 77
+      },
+      {
+        "entityName": "budget",
+        "startCharIndex": 99,
+        "endCharIndex": 106
+      }
+    ]
+  },
+  {
+    "text": "Just me",
+    "intentName": "None",
+    "entityLabels": []
+  },
+  {
+    "text": "yeah how about Montreal?",
+    "intentName": "None",
+    "entityLabels": [
+      {
+        "entityName": "or_city",
+        "startCharIndex": 15,
+        "endCharIndex": 23
+      }
+    ]
+  },
+  {
+    "text": "that's leaving on August 27th?",
+    "intentName": "None",
+    "entityLabels": [
+      {
+        "entityName": "str_date",
+        "startCharIndex": 18,
+        "endCharIndex": 29
+      }
+    ]
+  },
+  {
+    "text": "nothing closer to the 27th?",
+    "intentName": "None",
+    "entityLabels": [
+      {
+        "entityName": "str_date",
+        "startCharIndex": 22,
+        "endCharIndex": 26
+      }
+    ]
+  },
+  {
+    "text": "ya that's awesome. I'll book it. thanks man.",
+    "intentName": "book",
+    "entityLabels": []
+  },
+  {
+    "text": "HI im from Alexandria looking to book a 12 day vacation",
+    "intentName": "book",
+    "entityLabels": [
+      {
+        "entityName": "or_city",
+        "startCharIndex": 11,
+        "endCharIndex": 21
+      }
+    ]
+  },
+  {
+    "text": "no sorry that wouldn\u2019t. I will look elsewhere thank you!",
+    "intentName": "None",
+    "entityLabels": []
+  },
+  {
+    "text": "Hi im from termina can we find a vacation that starts on the 13th?",
+    "intentName": "book",
+    "entityLabels": [
+      {
+        "entityName": "or_city",
+        "startCharIndex": 11,
+        "endCharIndex": 18
+      },
+      {
+        "entityName": "str_date",
+        "startCharIndex": 57,
+        "endCharIndex": 65
+      }
+    ]
+  },
+  {
+    "text": "How about if i leave from Vancouver where would i be able to go?",
+    "intentName": "None",
+    "entityLabels": [
+      {
+        "entityName": "or_city",
+        "startCharIndex": 26,
+        "endCharIndex": 35
+      }
+    ]
+  },
+  {
+    "text": "and if i were to leave from columbus?",
+    "intentName": "None",
+    "entityLabels": [
+      {
+        "entityName": "or_city",
+        "startCharIndex": 28,
+        "endCharIndex": 36
+      }
+    ]
+  },
+  {
+    "text": "what do we have for Toronto?",
+    "intentName": "None",
+    "entityLabels": [
+      {
+        "entityName": "dst_city",
+        "startCharIndex": 20,
+        "endCharIndex": 27
+      }
+    ]
+  },
+  {
+    "text": "i have a budget of $3000, and let\u2019s say that i leave from Mexico City",
+    "intentName": "None",
+    "entityLabels": [
+      {
+        "entityName": "budget",
+        "startCharIndex": 19,
+        "endCharIndex": 24
+      },
+      {
+        "entityName": "or_city",
+        "startCharIndex": 58,
+        "endCharIndex": 69
+      }
+    ]
+  },
+  {
+    "text": "no that is all thank you i will try another service. Thank you",
+    "intentName": "None",
+    "entityLabels": []
+  },
+  {
+    "text": "Hi. I'm looking for an adventure from Thursday, August 18 to Saturday, September 3. I'm thinking of going to Fortaleza. Yes, with free breakfast of course. I'm leaving from Essen.",
+    "intentName": "book",
+    "entityLabels": [
+      {
+        "entityName": "str_date",
+        "startCharIndex": 38,
+        "endCharIndex": 57
+      },
+      {
+        "entityName": "end_date",
+        "startCharIndex": 61,
+        "endCharIndex": 82
+      },
+      {
+        "entityName": "dst_city",
+        "startCharIndex": 109,
+        "endCharIndex": 118
+      },
+      {
+        "entityName": "or_city",
+        "startCharIndex": 173,
+        "endCharIndex": 178
+      }
+    ]
+  },
+  {
+    "text": "Can you tell me more about the Fortaleza package?",
+    "intentName": "None",
+    "entityLabels": [
+      {
+        "entityName": "dst_city",
+        "startCharIndex": 31,
+        "endCharIndex": 40
+      }
+    ]
+  },
+  {
+    "text": "How many stars is the hotel?",
+    "intentName": "None",
+    "entityLabels": []
+  },
+  {
+    "text": "Is there free wifi?",
+    "intentName": "None",
+    "entityLabels": []
+  },
+  {
+    "text": "I like the Fortaleza package. How about the Ciudad Juarez and Burlington packages, is there free wifi and parking in addition to breakfast?",
+    "intentName": "None",
+    "entityLabels": [
+      {
+        "entityName": "dst_city",
+        "startCharIndex": 44,
+        "endCharIndex": 57
+      },
+      {
+        "entityName": "dst_city",
+        "startCharIndex": 62,
+        "endCharIndex": 72
+      }
+    ]
+  },
+  {
+    "text": "I'll book the Fortaleza package please.",
+    "intentName": "book",
+    "entityLabels": [
+      {
+        "entityName": "dst_city",
+        "startCharIndex": 14,
+        "endCharIndex": 23
+      }
+    ]
+  },
+  {
+    "text": "Perfect. Thank you for your help",
+    "intentName": "None",
+    "entityLabels": []
+  },
+  {
+    "text": "Hi, my name is Harry Potter and I'd like to go to Hogsmeade leaving from Kakariko Village on Saturday, August 13th for 3 nights with 11 friends.",
+    "intentName": "book",
+    "entityLabels": [
+      {
+        "entityName": "dst_city",
+        "startCharIndex": 50,
+        "endCharIndex": 59
+      },
+      {
+        "entityName": "or_city",
+        "startCharIndex": 73,
+        "endCharIndex": 89
+      },
+      {
+        "entityName": "str_date",
+        "startCharIndex": 93,
+        "endCharIndex": 114
+      }
+    ]
+  },
+  {
+    "text": "What? No. I'm looking for a trip to Hogsmeade with 11 of my friends.",
+    "intentName": "None",
+    "entityLabels": [
+      {
+        "entityName": "dst_city",
+        "startCharIndex": 36,
+        "endCharIndex": 45
+      }
+    ]
+  },
+  {
+    "text": "I'll have to talk about it with my friends and get back to you. Thank you for your help.",
+    "intentName": "None",
+    "entityLabels": []
+  },
+  {
+    "text": "Hi looking to go on vacation on the 13th of august",
+    "intentName": "book",
+    "entityLabels": [
+      {
+        "entityName": "str_date",
+        "startCharIndex": 36,
+        "endCharIndex": 50
+      }
+    ]
+  },
+  {
+    "text": "How about Naples",
+    "intentName": "None",
+    "entityLabels": [
+      {
+        "entityName": "dst_city",
+        "startCharIndex": 10,
+        "endCharIndex": 16
+      }
+    ]
+  },
+  {
+    "text": "Vancouver",
+    "intentName": "None",
+    "entityLabels": [
+      {
+        "entityName": "or_city",
+        "startCharIndex": 0,
+        "endCharIndex": 9
+      }
+    ]
+  },
+  {
+    "text": "im planning on a three day get away from the 13th to the 16th of August",
+    "intentName": "None",
+    "entityLabels": [
+      {
+        "entityName": "str_date",
+        "startCharIndex": 45,
+        "endCharIndex": 49
+      },
+      {
+        "entityName": "end_date",
+        "startCharIndex": 57,
+        "endCharIndex": 71
+      }
+    ]
+  },
+  {
+    "text": "ya that sounds interesting can you tell me more about this package?",
+    "intentName": "None",
+    "entityLabels": []
+  },
+  {
+    "text": "are there any other Hotels?",
+    "intentName": "None",
+    "entityLabels": []
+  },
+  {
+    "text": "How much would that be?",
+    "intentName": "None",
+    "entityLabels": []
+  },
+  {
+    "text": "and is that flight in Business class?",
+    "intentName": "None",
+    "entityLabels": []
+  },
+  {
+    "text": "can we upgrade it?",
+    "intentName": "None",
+    "entityLabels": []
+  },
+  {
+    "text": "yes please that sounds perfect! Thank You!",
+    "intentName": "None",
+    "entityLabels": []
+  },
+  {
+    "text": "Hi. I live in Busan and I'd like to go to Las Vegas from Wednesday August 17 to Monday September 5. What's available?",
+    "intentName": "book",
+    "entityLabels": [
+      {
+        "entityName": "or_city",
+        "startCharIndex": 14,
+        "endCharIndex": 19
+      },
+      {
+        "entityName": "dst_city",
+        "startCharIndex": 42,
+        "endCharIndex": 51
+      },
+      {
+        "entityName": "str_date",
+        "startCharIndex": 57,
+        "endCharIndex": 76
+      },
+      {
+        "entityName": "end_date",
+        "startCharIndex": 80,
+        "endCharIndex": 98
+      }
+    ]
+  },
+  {
+    "text": "Perhaps another time, I'm really just looking for Las Vegas.",
+    "intentName": "None",
+    "entityLabels": [
+      {
+        "entityName": "dst_city",
+        "startCharIndex": 50,
+        "endCharIndex": 59
+      }
+    ]
+  },
+  {
+    "text": "Around 3000USD",
+    "intentName": "None",
+    "entityLabels": [
+      {
+        "entityName": "budget",
+        "startCharIndex": 7,
+        "endCharIndex": 14
+      }
+    ]
+  },
+  {
+    "text": "How much is a package to Punta Cana?",
+    "intentName": "None",
+    "entityLabels": [
+      {
+        "entityName": "dst_city",
+        "startCharIndex": 25,
+        "endCharIndex": 35
+      }
+    ]
+  },
+  {
+    "text": "I'd like to compare the Cairo and Punta Cana packages. What are the hotels, how many stars, free wifi, free breakfast?",
+    "intentName": "None",
+    "entityLabels": [
+      {
+        "entityName": "dst_city",
+        "startCharIndex": 24,
+        "endCharIndex": 29
+      },
+      {
+        "entityName": "dst_city",
+        "startCharIndex": 34,
+        "endCharIndex": 44
+      }
+    ]
+  },
+  {
+    "text": "I'd like to book the Cairo package. Thank you!",
+    "intentName": "book",
+    "entityLabels": [
+      {
+        "entityName": "dst_city",
+        "startCharIndex": 21,
+        "endCharIndex": 26
+      }
+    ]
+  },
+  {
+    "text": "Hello, I want to leave from Seoul on August 27 and return on September 9. You can go to Manaus.",
+    "intentName": "book",
+    "entityLabels": [
+      {
+        "entityName": "or_city",
+        "startCharIndex": 28,
+        "endCharIndex": 33
+      },
+      {
+        "entityName": "str_date",
+        "startCharIndex": 37,
+        "endCharIndex": 46
+      },
+      {
+        "entityName": "end_date",
+        "startCharIndex": 61,
+        "endCharIndex": 72
+      },
+      {
+        "entityName": "dst_city",
+        "startCharIndex": 88,
+        "endCharIndex": 94
+      }
+    ]
+  },
+  {
+    "text": "No budget, I show me an array of packages with varying prices",
+    "intentName": "None",
+    "entityLabels": []
+  },
+  {
+    "text": "Would I be staying in a room with an ocean front view? How much would it cost to upgrade to such a room?",
+    "intentName": "None",
+    "entityLabels": []
+  },
+  {
+    "text": "Does the hotel have a gym which guests can access?",
+    "intentName": "None",
+    "entityLabels": []
+  },
+  {
+    "text": "Please. Thanks",
+    "intentName": "None",
+    "entityLabels": []
+  },
+  {
+    "text": "I'm a polygamist and I'd like to travel with my 6 partners and 1 child to San Juan from Pittsburgh on a budget of 6600 USD",
+    "intentName": "book",
+    "entityLabels": [
+      {
+        "entityName": "dst_city",
+        "startCharIndex": 74,
+        "endCharIndex": 82
+      },
+      {
+        "entityName": "or_city",
+        "startCharIndex": 88,
+        "endCharIndex": 98
+      },
+      {
+        "entityName": "budget",
+        "startCharIndex": 114,
+        "endCharIndex": 122
+      }
+    ]
+  },
+  {
+    "text": "Can you tell me how much the hotel is per night, in case we make a last minute decision to stay one more night?",
+    "intentName": "None",
+    "entityLabels": []
+  },
+  {
+    "text": "How much would it cost from August 17th to August 25th?",
+    "intentName": "None",
+    "entityLabels": [
+      {
+        "entityName": "str_date",
+        "startCharIndex": 28,
+        "endCharIndex": 39
+      },
+      {
+        "entityName": "end_date",
+        "startCharIndex": 43,
+        "endCharIndex": 54
+      }
+    ]
+  },
+  {
+    "text": "Ok I'll book the package with 8 days in Pittsburgh from August 17th to the 24th. Thank you.",
+    "intentName": "book",
+    "entityLabels": [
+      {
+        "entityName": "dst_city",
+        "startCharIndex": 40,
+        "endCharIndex": 50
+      },
+      {
+        "entityName": "str_date",
+        "startCharIndex": 56,
+        "endCharIndex": 67
+      },
+      {
+        "entityName": "end_date",
+        "startCharIndex": 75,
+        "endCharIndex": 79
+      }
+    ]
+  },
+  {
+    "text": "Hi, send me on a 10 day-trip away from Cairo. I'd like to leave August 15. Send me to Sendai. Money is not object",
+    "intentName": "book",
+    "entityLabels": [
+      {
+        "entityName": "or_city",
+        "startCharIndex": 39,
+        "endCharIndex": 44
+      },
+      {
+        "entityName": "str_date",
+        "startCharIndex": 64,
+        "endCharIndex": 73
+      },
+      {
+        "entityName": "dst_city",
+        "startCharIndex": 86,
+        "endCharIndex": 92
+      }
+    ]
+  },
+  {
+    "text": "Just me, one adult",
+    "intentName": "None",
+    "entityLabels": []
+  },
+  {
+    "text": "Would it be possible to upgrade to first class?",
+    "intentName": "None",
+    "entityLabels": []
+  },
+  {
+    "text": "Yes, I would like to book this package.",
+    "intentName": "book",
+    "entityLabels": []
+  },
+  {
+    "text": "Good afternoon, I'd like to book a trip with my son from August 18 to August 29. He and I would be leaving from Curitiba. What destinations can you offer?",
+    "intentName": "book",
+    "entityLabels": [
+      {
+        "entityName": "str_date",
+        "startCharIndex": 57,
+        "endCharIndex": 66
+      },
+      {
+        "entityName": "end_date",
+        "startCharIndex": 70,
+        "endCharIndex": 79
+      },
+      {
+        "entityName": "or_city",
+        "startCharIndex": 112,
+        "endCharIndex": 120
+      }
+    ]
+  },
+  {
+    "text": "Goodness that's too expensive. Is there anything you can offer around $2600?",
+    "intentName": "None",
+    "entityLabels": [
+      {
+        "entityName": "budget",
+        "startCharIndex": 63,
+        "endCharIndex": 75
+      }
+    ]
+  },
+  {
+    "text": "Is there anything for 2600USD between the dates of August 18 and August 29th? For less than 10 days?",
+    "intentName": "None",
+    "entityLabels": [
+      {
+        "entityName": "budget",
+        "startCharIndex": 22,
+        "endCharIndex": 29
+      },
+      {
+        "entityName": "str_date",
+        "startCharIndex": 51,
+        "endCharIndex": 60
+      },
+      {
+        "entityName": "end_date",
+        "startCharIndex": 65,
+        "endCharIndex": 76
+      }
+    ]
+  },
+  {
+    "text": "Fantastic! What are the departure and arrival dates?",
+    "intentName": "None",
+    "entityLabels": []
+  },
+  {
+    "text": "What is the hotel, and how many stars does it have?",
+    "intentName": "None",
+    "entityLabels": []
+  },
+  {
+    "text": "I like the Scarlet Palms Resort. What are the departure and arrival dates?",
+    "intentName": "None",
+    "entityLabels": []
+  },
+  {
+    "text": "Ok I'll book this one.",
+    "intentName": "book",
+    "entityLabels": []
+  },
+  {
+    "text": "Thank you!",
+    "intentName": "None",
+    "entityLabels": []
+  },
+  {
+    "text": "Hi, my family and i are booking a trip to Sacramento, can you help us?",
+    "intentName": "book",
+    "entityLabels": [
+      {
+        "entityName": "dst_city",
+        "startCharIndex": 42,
+        "endCharIndex": 52
+      }
+    ]
+  },
+  {
+    "text": "we would be coming from San Diego",
+    "intentName": "None",
+    "entityLabels": [
+      {
+        "entityName": "or_city",
+        "startCharIndex": 24,
+        "endCharIndex": 33
+      }
+    ]
+  },
+  {
+    "text": "there will be 3 kids and myself (an adult)",
+    "intentName": "None",
+    "entityLabels": []
+  },
+  {
+    "text": "not really",
+    "intentName": "None",
+    "entityLabels": []
+  },
+  {
+    "text": "depends on the package we get",
+    "intentName": "None",
+    "entityLabels": []
+  },
+  {
+    "text": "im willing to spend at most $4200",
+    "intentName": "None",
+    "entityLabels": [
+      {
+        "entityName": "budget",
+        "startCharIndex": 28,
+        "endCharIndex": 33
+      }
+    ]
+  },
+  {
+    "text": "yes actually that would be wonderful can i upgrade the flight?",
+    "intentName": "None",
+    "entityLabels": []
+  }
+]
