@@ -44,7 +44,7 @@ def booking_app(subscription_key):
 
         client.model.add_intent(app_id, version_id, 'book')
         print("intent created")
-        
+
         client.model.add_entity(app_id, version_id, name="or_city")
         client.model.add_entity(app_id, version_id, name="dst_city")
         client.model.add_entity(app_id, version_id, name="str_date")
@@ -54,7 +54,7 @@ def booking_app(subscription_key):
 
         print("\nAdding utterances by batch, please wait")
 
-        number_of_files = np.arange(0, 10300, 100)
+        number_of_files = np.arange(0, 4000, 100)
         for file in tqdm(number_of_files):
             with open('examples/FlyMeData_' + str(file) + '.json', 'r') as f:
                 data = json.load(f)
