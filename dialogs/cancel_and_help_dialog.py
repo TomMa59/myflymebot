@@ -44,11 +44,11 @@ class CancelAndHelpDialog(ComponentDialog):
         if inner_dc.context.activity.type == ActivityTypes.message:
             text = inner_dc.context.activity.text.lower()
 
-            if text in ("help", "?"):
-                await inner_dc.context.send_activity("Show Help...")
+            if "help" in text or "?" in text:
+                await inner_dc.context.send_activity("To make your booking, I need the 5 following informations:\n- Departure city\n- Destination city\n- Departure date\n- Return date\n- Budget for the trip")
                 return DialogTurnResult(DialogTurnStatus.Waiting)
 
-            if text in ("cancel", "quit"):
+            if "cancel" in text or "quit" in text:
                 await inner_dc.context.send_activity("Cancelling")
                 return await inner_dc.cancel_all_dialogs()
 

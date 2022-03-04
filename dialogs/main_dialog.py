@@ -65,7 +65,7 @@ class MainDialog(ComponentDialog):
         message_text = (
             str(step_context.options)
             if step_context.options
-            else "What can I help you with today?"
+            else "What can I do for you today ?"
         )
         prompt_message = MessageFactory.text(
             message_text, message_text, InputHints.expecting_input
@@ -96,13 +96,6 @@ class MainDialog(ComponentDialog):
             # Run the BookingDialog giving it whatever details we have from the LUIS call.
             return await step_context.begin_dialog(self._booking_dialog_id, luis_result)
 
-        if intent == Intent.GET_WEATHER.value:
-            get_weather_text = "TODO: get weather flow here"
-            get_weather_message = MessageFactory.text(
-                get_weather_text, get_weather_text, InputHints.ignoring_input
-            )
-            await step_context.context.send_activity(get_weather_message)
-
         else:
             didnt_understand_text = (
                 "Sorry, I didn't get that. Please try asking in a different way"
@@ -125,7 +118,7 @@ class MainDialog(ComponentDialog):
             # If the call to the booking service was successful tell the user.
             # time_property = Timex(result.travel_date)
             # travel_date_msg = time_property.to_natural_language(datetime.now())
-            msg_txt = f"I have you booked to {result.destination} from {result.origin} on {result.travel_date}"
+            msg_txt = f"I have you booked to {result.destination} from {result.origin} on {result.start_travel_date}. You are coming back on: { result.return_travel_date } and I respected your budget of: { result.budget }"
             message = MessageFactory.text(msg_txt, msg_txt, InputHints.ignoring_input)
             await step_context.context.send_activity(message)
 
@@ -141,10 +134,10 @@ class MainDialog(ComponentDialog):
         In some cases LUIS will recognize the From and To composite entities as a valid cities but the From and To Airport values
         will be empty if those entity values can't be mapped to a canonical item in the Airport.
         """
-        if luis_result.unsupported_airports:
+        if luis_result.unsupported_city:
             message_text = (
-                f"Sorry but the following airports are not supported:"
-                f" {', '.join(luis_result.unsupported_airports)}"
+                f"Sorry but the following cities are not supported:"
+                f" {', '.join(luis_result.unsupported_city)}"
             )
             message = MessageFactory.text(
                 message_text, message_text, InputHints.ignoring_input

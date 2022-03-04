@@ -1,3 +1,8 @@
 .luisrc
 .env
 /__pycache__
+/bots/__pycache__
+/dialogs/__pycache__
+/helpers/__pycache__
+package.zip
+

@@ -9,10 +9,9 @@ from booking_details import BookingDetails
 
 
 class Intent(Enum):
-    BOOK_FLIGHT = "BookFlight"
+    BOOK_FLIGHT = "book"
     CANCEL = "Cancel"
-    GET_WEATHER = "GetWeather"
-    NONE_INTENT = "NoneIntent"
+    NONE_INTENT = "None"
 
 
 def top_intent(intents: Dict[Intent, dict]) -> TopIntent:
@@ -56,45 +55,46 @@ class LuisHelper:
 
                 # We need to get the result from the LUIS JSON which at every level returns an array.
                 to_entities = recognizer_result.entities.get("$instance", {}).get(
-                    "To", []
+                    "dst_city", []
                 )
                 if len(to_entities) > 0:
-                    if recognizer_result.entities.get("To", [{"$instance": {}}])[0][
-                        "$instance"
-                    ]:
+                    if recognizer_result.entities.get("dst_city", [{"$instance": {}}])[0]:
                         result.destination = to_entities[0]["text"].capitalize()
                     else:
-                        result.unsupported_airports.append(
+                        result.unsupported_city.append(
                             to_entities[0]["text"].capitalize()
                         )
 
                 from_entities = recognizer_result.entities.get("$instance", {}).get(
-                    "From", []
+                    "or_city", []
                 )
                 if len(from_entities) > 0:
-                    if recognizer_result.entities.get("From", [{"$instance": {}}])[0][
-                        "$instance"
-                    ]:
+                    if recognizer_result.entities.get("or_city", [{"$instance": {}}])[0]:
                         result.origin = from_entities[0]["text"].capitalize()
                     else:
-                        result.unsupported_airports.append(
+                        result.unsupported_city.append(
                             from_entities[0]["text"].capitalize()
                         )
+                start_date_entities = recognizer_result.entities.get("$instance", {}).get(
+                    "str_date", []
+                )
+                if len(start_date_entities) > 0:
+                    if recognizer_result.entities.get("str_date", [{"$instance": {}}])[0]:
+                        result.start_travel_date = start_date_entities[0]["text"]
+                        
+                return_date_entities = recognizer_result.entities.get("$instance", {}).get(
+                    "end_date", []
+                )
+                if len(return_date_entities) > 0:
+                    if recognizer_result.entities.get("end_date", [{"$instance": {}}])[0]:
+                        result.return_travel_date = return_date_entities[0]["text"]                
 
-                # This value will be a TIMEX. And we are only interested in a Date so grab the first result and drop
-                # the Time part. TIMEX is a format that represents DateTime expressions that include some ambiguity.
-                # e.g. missing a Year.
-                date_entities = recognizer_result.entities.get("datetime", [])
-                if date_entities:
-                    timex = date_entities[0]["timex"]
-
-                    if timex:
-                        datetime = timex[0].split("T")[0]
-
-                        result.travel_date = datetime
-
-                else:
-                    result.travel_date = None
+                budget_entities = recognizer_result.entities.get("$instance", {}).get(
+                    "budget", []
+                )
+                if len(budget_entities) > 0:
+                    if recognizer_result.entities.get("budget", [{"$instance": {}}])[0]:
+                        result.budget = budget_entities[0]["text"]  
 
         except Exception as exception:
             print(exception)

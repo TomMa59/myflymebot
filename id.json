@@ -1,5 +1,5 @@
 {
-	"azureSubscriptionId": "284e5cae-8c01-4d48-ab4e-d88ad6dbea08",
-	"resourceGroup": "flyme",
-	"accountName": "luis-cog"
+    "azureSubscriptionId": "284e5cae-8c01-4d48-ab4e-d88ad6dbea08",
+    "resourceGroup": "flyme",
+    "accountName": "luis-cog"
 }

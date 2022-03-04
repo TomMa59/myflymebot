@@ -11,7 +11,6 @@ from botbuilder.core import (
     NullTelemetryClient,
 )
 from botbuilder.dialogs import Dialog, DialogExtensions
-from helpers.dialog_helper import DialogHelper
 
 
 class DialogBot(ActivityHandler):

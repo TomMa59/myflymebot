@@ -7,12 +7,16 @@ class BookingDetails:
         self,
         destination: str = None,
         origin: str = None,
-        travel_date: str = None,
-        unsupported_airports=None,
+        start_travel_date: str = None,
+        return_travel_date: str = None,
+        budget: str = None,
+        unsupported_city=None,
     ):
-        if unsupported_airports is None:
-            unsupported_airports = []
+        if unsupported_city is None:
+            unsupported_city = []
         self.destination = destination
         self.origin = origin
-        self.travel_date = travel_date
-        self.unsupported_airports = unsupported_airports
+        self.start_travel_date = start_travel_date
+        self.return_travel_date = return_travel_date
+        self.budget = budget
+        self.unsupported_city = unsupported_city
