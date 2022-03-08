@@ -9,7 +9,6 @@ from dotenv import load_dotenv, find_dotenv
 class DefaultConfig:
     """Configuration for the bot."""
 
-    load_dotenv(find_dotenv())
     PORT = 3978
     APP_ID = os.environ.get("MicrosoftAppId")
     APP_PASSWORD = os.environ.get("MicrosoftAppPassword")
