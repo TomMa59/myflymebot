@@ -40,7 +40,7 @@ export LuisAPIKey
 
 # Create, train and publish luis app
 python luis_app_creation_train_publish.py
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!LuisAPPId=$(bf luis:application:show --appId)
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!LuisAPPId=$(bf luis:application:show --appId)
 echo $LuisAPPId
 
 # Addition of the prediction resource to the Luis app
