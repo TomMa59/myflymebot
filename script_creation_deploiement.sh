@@ -125,29 +125,13 @@ InstrumentationKey=$(az monitor app-insights component show --app luis-follow --
 #     -g myflymebot \
 #     --startup-file="python3.7 -m aiohttp.web -H 0.0.0.0 -P 8000 app:init_func"
 
-az webapp deployment github-actions add --repo "TomMa59/myflymebot" \
-                                        --branch main \
-                                        -g myflymebot \
-                                        -n myflymebottmz202203 \
-                                        --force \
-                                        --login-with-github \
-
-
-
-
-
-
-
-
-
-
-# az webapp deployment source config \
-#     --branch main \
-#     --name myflymebottmz202203 \
-#     --repo-url https://github.com/TomMa59/myflymebot \
-#     --resource-group myflymebot \
-#     --repository-type github \
-#     --github-action
+az webapp deployment source config \
+     --branch main \
+     --name myflymebottmz202203 \
+     --repo-url https://github.com/TomMa59/myflymebot \
+     --resource-group myflymebot \
+     --repository-type github \
+     --github-action true
 
 
 #az cognitiveservices account purge --location westeurope --resource-group myflymebot --name luis-authoring
