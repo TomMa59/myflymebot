@@ -8,26 +8,26 @@ az account set \
 ma_localisation=westeurope
 
 # Resource group creation
-# az group create \
-#     --location $ma_localisation \
-#     --name myflymebot
+az group create \
+     --location $ma_localisation \
+     --name myflymebot
 
 #Luis resources creation
-# az cognitiveservices account create \
-#      -n luis-authoring  \
-#      -g myflymebot \
-#      --kind LUIS.Authoring \
-#      --sku F0 \
-#      -l $ma_localisation \
-#      --yes
+az cognitiveservices account create \
+      -n luis-authoring  \
+      -g myflymebot \
+      --kind LUIS.Authoring \
+      --sku F0 \
+      -l $ma_localisation \
+      --yes
 
-# az cognitiveservices account create \
-#      -n luis-pred \
-#      -g myflymebot \
-#      --kind LUIS \
-#      --sku F0 \
-#      -l westeurope \
-#      --yes
+az cognitiveservices account create \
+      -n luis-pred \
+      -g myflymebot \
+      --kind LUIS \
+      --sku F0 \
+      -l westeurope \
+      --yes
 
 # Luis API authentication key
 LuisAuthKey=$(az cognitiveservices account keys list \
@@ -37,7 +37,7 @@ LuisAuthKey=$(az cognitiveservices account keys list \
 export LuisAuthKey
 
 # Create, train and publish luis app
-#python luis_app_creation_train_publish.py
+python luis_app_creation_train_publish.py
 LuisAPPId=$(luis list apps --take 1 | grep -o -P -- '"id": "\K.{36}')
 export LuisAPPId
 
@@ -56,9 +56,9 @@ luis set \
     --authoringKey $LuisAuthKey \
     --region westeurope
 
-#luis add appazureaccount \
-#    --in id.json \
-#    --appId $LuisAPPId --armToken $arm_access_token
+luis add appazureaccount \
+    --in id.json \
+    --appId $LuisAPPId --armToken $arm_access_token
 
 LuisAPIKey=$(az cognitiveservices account keys list \
                     --name luis-pred \
@@ -72,63 +72,63 @@ export LuisAPIHostName
 # Registration
 read -s -p 'Define your Microsoft App Passwords (please be careful to remeber it) :' -r MicrosoftAppPassword
 export MicrosoftAppPassword
-# az ad app create \
-#     --display-name "myflymebottmz202203" \
-#     --password $MicrosoftAppPassword \
-#     --available-to-other-tenants
+az ad app create \
+     --display-name "myflymebottmz202203" \
+     --password $MicrosoftAppPassword \
+     --available-to-other-tenants
 MicrosoftAppId=$(az ad app list --display-name myflymebottmz202203 | grep -o -P -- '"appId": "\K.{36}')
 export MicrosoftAppId
 
 # Service Plan
-# az appservice plan create \
-#     -g myflymebot \
-#     -n flymebotserviceplan \
-#     --location westeurope \
-#     --is-linux
+az appservice plan create \
+     -g myflymebot \
+     -n flymebotserviceplan \
+     --location westeurope \
+     --is-linux
 
 # Web App
-# az webapp create \
-#     -g myflymebot \
-#     -p flymebotserviceplan \
-#     -n myflymebottmz202203 \
-#     --runtime "python:3.7"
+az webapp create \
+     -g myflymebot \
+     -p flymebotserviceplan \
+     -n myflymebottmz202203 \
+     --runtime "python:3.7"
 
-# az bot create --appid $MicrosoftAppId \
-#                 --password $MicrosoftAppPassword \
-#                 --kind registration \
-#                 --name myflymebot \
-#                 --resource-group myflymebot \
-#                 --endpoint "https://myflymebottmz202203.azurewebsites.net/api/messages" \
-#                 --output none
+az bot create --appid $MicrosoftAppId \
+                 --password $MicrosoftAppPassword \
+                 --kind registration \
+                 --name myflymebot \
+                 --resource-group myflymebot \
+                 --endpoint "https://myflymebottmz202203.azurewebsites.net/api/messages" \
+                 --output none
 
 # App insights
-# az monitor app-insights component create \
-#     --app luis-follow \
-#     --location westeurope \
-#     --kind web \
-#     -g myflymebot \
-#     --application-type web
+az monitor app-insights component create \
+     --app luis-follow \
+     --location westeurope \
+     --kind web \
+     -g myflymebot \
+     --application-type web
 InstrumentationKey=$(az monitor app-insights component show --app luis-follow --resource-group myflymebot --query instrumentationKey -o tsv)
 export InstrumentationKey
 
 #Deployment
 # Web App config
-#  az webapp config appsettings set \
-#      -n myflymebottmz202203 \
-#      -g myflymebot \
-#      --settings InstrumentationKey=$InstrumentationKey \
-#                  LuisAPPId=$LuisAPPId \
-#                  LuisAPIKey=$LuisAPIKey \
-#                  LuisAPIHostName=$LuisAPIHostName \
-#                  MicrosoftAppId=$MicrosoftAppId \
-#                  MicrosoftAppPassword=$MicrosoftAppPassword \
-#                  WEBSITE_WEBDEPLOY_USE_SCM=true
-#                 --output none
+az webapp config appsettings set \
+      -n myflymebottmz202203 \
+      -g myflymebot \
+      --settings InstrumentationKey=$InstrumentationKey \
+                  LuisAPPId=$LuisAPPId \
+                  LuisAPIKey=$LuisAPIKey \
+                  LuisAPIHostName=$LuisAPIHostName \
+                  MicrosoftAppId=$MicrosoftAppId \
+                  MicrosoftAppPassword=$MicrosoftAppPassword \
+                  WEBSITE_WEBDEPLOY_USE_SCM=true
+                 --output none
 
-# az webapp config set \
-#     -n myflymebottmz202203 \
-#     -g myflymebot \
-#     --startup-file="python3.7 -m aiohttp.web -H 0.0.0.0 -P 8000 app:init_func"
+az webapp config set \
+     -n myflymebottmz202203 \
+     -g myflymebot \
+     --startup-file="python3.7 -m aiohttp.web -H 0.0.0.0 -P 8000 app:init_func"
 
 gh auth login
 gh secret set APP_ID --body $MicrosoftAppId \
@@ -144,12 +144,12 @@ gh secret set LUIS_API_HOST_NAME --body $LuisAPIHostName \
 gh secret set APPINSIGHTS_INSTRUMENTATION_KEY --body $InstrumentationKey \
             --repo "TomMa59/myflymebot"
 
-# az webapp deployment source config \
-#      --branch main \
-#      --name myflymebottmz202203 \
-#      --repo-url https://github.com/TomMa59/myflymebot \
-#      --resource-group myflymebot \
-#      --repository-type github \
-#      --github-action true
+az webapp deployment source config \
+      --branch main \
+      --name myflymebottmz202203 \
+      --repo-url https://github.com/TomMa59/myflymebot \
+      --resource-group myflymebot \
+      --repository-type github \
+      --github-action true
 
 #az cognitiveservices account purge --location westeurope --resource-group myflymebot --name luis-authoring
