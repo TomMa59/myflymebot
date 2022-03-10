@@ -16,7 +16,6 @@ from botbuilder.core.adapters import TestAdapter
 from botbuilder.core import BotAdapter, RecognizerResult, TurnContext
 from botbuilder.schema import Activity, ActivityTypes, ChannelAccount, ConversationAccount
 
-
 class LuisRecognizerTest(AsyncTestCase):
     CONFIG = DefaultConfig()
     _luisAppId: str = CONFIG.LUIS_APP_ID

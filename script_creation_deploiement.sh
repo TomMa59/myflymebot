@@ -39,6 +39,7 @@ export LuisAuthKey
 # Create, train and publish luis app
 #python luis_app_creation_train_publish.py
 LuisAPPId=$(luis list apps --take 1 | grep -o -P -- '"id": "\K.{36}')
+export LuisAPPId
 
 # Addition of the prediction resource to the Luis app
 arm_access_token=$(az account get-access-token \
@@ -63,16 +64,20 @@ LuisAPIKey=$(az cognitiveservices account keys list \
                     --name luis-pred \
                     -g myflymebot \
                     --query key1 -o tsv)
+export LuisAPIKey
 LuisAPIHostName="westeurope.api.cognitive.microsoft.com"
+export LuisAPIHostName
 
 # App service, Webapp and bot
 # Registration
 read -s -p 'Define your Microsoft App Passwords (please be careful to remeber it) :' -r MicrosoftAppPassword
+export MicrosoftAppPassword
 # az ad app create \
 #     --display-name "myflymebottmz202203" \
 #     --password $MicrosoftAppPassword \
 #     --available-to-other-tenants
 MicrosoftAppId=$(az ad app list --display-name myflymebottmz202203 | grep -o -P -- '"appId": "\K.{36}')
+export MicrosoftAppId
 
 # Service Plan
 # az appservice plan create \
@@ -104,7 +109,7 @@ MicrosoftAppId=$(az ad app list --display-name myflymebottmz202203 | grep -o -P 
 #     -g myflymebot \
 #     --application-type web
 InstrumentationKey=$(az monitor app-insights component show --app luis-follow --resource-group myflymebot --query instrumentationKey -o tsv)
-
+export InstrumentationKey
 
 #Deployment
 # Web App config
@@ -125,12 +130,14 @@ InstrumentationKey=$(az monitor app-insights component show --app luis-follow --
 #     -g myflymebot \
 #     --startup-file="python3.7 -m aiohttp.web -H 0.0.0.0 -P 8000 app:init_func"
 
-az webapp deployment source config \
-     --branch main \
-     --name myflymebottmz202203 \
-     --repo-url https://github.com/TomMa59/myflymebot \
-     --resource-group myflymebot \
-     --repository-type github \
-     --github-action true
+python test_prog.py
+
+# az webapp deployment source config \
+#      --branch main \
+#      --name myflymebottmz202203 \
+#      --repo-url https://github.com/TomMa59/myflymebot \
+#      --resource-group myflymebot \
+#      --repository-type github \
+#      --github-action true
 
 #az cognitiveservices account purge --location westeurope --resource-group myflymebot --name luis-authoring
