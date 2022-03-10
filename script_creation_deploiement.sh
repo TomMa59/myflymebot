@@ -43,7 +43,7 @@ python luis_app_creation_train_publish.py
 luis set --authoringKey $LuisAuthKey
 LuisAPPId=$(luis list apps --take 1 | grep -o -P -- '"id": "\K.{36}')
 export LuisAPPId
-echo $LuisAPPId
+
 # Addition of the prediction resource to the Luis app
 arm_access_token=$(az account get-access-token \
     --resource=https://management.core.windows.net/ \
@@ -146,12 +146,27 @@ gh secret set LUIS_API_HOST_NAME --body $LuisAPIHostName \
 gh secret set APPINSIGHTS_INSTRUMENTATION_KEY --body $InstrumentationKey \
             --repo "TomMa59/myflymebot"
 
-az webapp deployment source config \
-      --branch main \
-      --name myflymebottmz202203 \
-      --repo-url https://github.com/TomMa59/myflymebot \
-      --resource-group myflymebot \
-      --repository-type github \
-      --github-action true
+az webapp deployment github-actions add \
+    --repo "TomMa59/myflymebot" \
+    -g myflymebot \
+    -n myflymebottmz202203 \
+    -b main \
+    --login-with-github
 
+publish_profile=$(az webapp deployment list-publishing-profiles \
+    --name myflymebottmz202203 \
+    --resource-group myflymebot \
+    --xml)
+gh secret set AZUREAPPSERVICE_PUBLISHPROFILE \
+    --body $publish_profile \
+    --repo "TomMa59/myflymebot"
+
+##### Maybe get profile of distribution?????
+# az webapp deployment source config \
+#       --branch main \
+#       --name myflymebottmz202203 \
+#       --repo-url https://github.com/TomMa59/myflymebot \
+#       --resource-group myflymebot \
+#       --repository-type github \
+#       --github-action true
 #az cognitiveservices account purge --location westeurope --resource-group myflymebot --name luis-authoring
