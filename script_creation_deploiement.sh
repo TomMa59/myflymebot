@@ -72,7 +72,7 @@ export LuisAPIHostName
 
 # App service, Webapp and bot
 # Registration
-read -s -p 'Define your Microsoft App Passwords (please be careful to remeber it) :' -r MicrosoftAppPassword
+read -s -p 'Define your Microsoft App Passwords (please be careful to remember it) :' -r MicrosoftAppPassword
 export MicrosoftAppPassword
 az ad app create \
      --display-name "myflymebottmz202203" \
@@ -146,20 +146,19 @@ gh secret set LUIS_API_HOST_NAME --body $LuisAPIHostName \
 gh secret set APPINSIGHTS_INSTRUMENTATION_KEY --body $InstrumentationKey \
             --repo "TomMa59/myflymebot"
 
+gh secret set AZUREAPPSERVICE_PUBLISHPROFILE \
+    --body "$(az webapp deployment list-publishing-profiles \
+    --name myflymebottmz202203 \
+    --resource-group myflymebot \
+    --xml)" \
+    --repo "TomMa59/myflymebot"
+
 az webapp deployment github-actions add \
     --repo "TomMa59/myflymebot" \
     -g myflymebot \
     -n myflymebottmz202203 \
     -b main \
     --login-with-github
-
-publish_profile=$(az webapp deployment list-publishing-profiles \
-    --name myflymebottmz202203 \
-    --resource-group myflymebot \
-    --xml)
-gh secret set AZUREAPPSERVICE_PUBLISHPROFILE \
-    --body $publish_profile \
-    --repo "TomMa59/myflymebot"
 
 ##### Maybe get profile of distribution?????
 # az webapp deployment source config \
