@@ -30,7 +30,15 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
         
-      # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
+      - name: Run unit tests
+        env: 
+          MicrosoftAppId: ${{ secrets.APP_ID }}
+          MicrosoftAppPassword: ${{ secrets.APP_PASSWORD }}
+          LuisAPPId: ${{ secrets.LUIS_APP_ID }}
+          LuisAPIKey: ${{ secrets.LUIS_API_KEY }}
+          LuisAPIHostName: ${{ secrets.LUIS_API_HOST_NAME }}
+          InstrumentationKey: ${{ secrets.APPINSIGHTS_INSTRUMENTATION_KEY }}
+        run: python test_prog.py
       
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v2
