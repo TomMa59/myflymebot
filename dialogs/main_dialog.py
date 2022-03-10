@@ -55,8 +55,8 @@ class MainDialog(ComponentDialog):
         if not self._luis_recognizer.is_configured:
             await step_context.context.send_activity(
                 MessageFactory.text(
-                    "NOTE: LUIS is not configured. To enable all capabilities, add 'LuisAppId', 'LuisAPIKey' and "
-                    "'LuisAPIHostName' to the appsettings.json file.",
+                    "NOTE: LUIS is not configured. To enable all capabilities, add 'LuisAPPId', 'LuisAPIKey' and "
+                    "'LuisAPIHostName' to env variables.",
                     input_hint=InputHints.ignoring_input,
                 )
             )

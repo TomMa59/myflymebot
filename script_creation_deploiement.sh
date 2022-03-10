@@ -117,7 +117,7 @@ export InstrumentationKey
 #      -n myflymebottmz202203 \
 #      -g myflymebot \
 #      --settings InstrumentationKey=$InstrumentationKey \
-#                  LuisAppId=$LuisAPPId \
+#                  LuisAPPId=$LuisAPPId \
 #                  LuisAPIKey=$LuisAPIKey \
 #                  LuisAPIHostName=$LuisAPIHostName \
 #                  MicrosoftAppId=$MicrosoftAppId \
