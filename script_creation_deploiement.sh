@@ -133,5 +133,4 @@ az webapp deployment source config \
      --repository-type github \
      --github-action true
 
-
 #az cognitiveservices account purge --location westeurope --resource-group myflymebot --name luis-authoring
