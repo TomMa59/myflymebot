@@ -130,7 +130,19 @@ export InstrumentationKey
 #     -g myflymebot \
 #     --startup-file="python3.7 -m aiohttp.web -H 0.0.0.0 -P 8000 app:init_func"
 
-python test_prog.py
+gh auth login
+gh secret set APP_ID --body $MicrosoftAppId \
+            --repo "TomMa59/myflymebot"
+gh secret set APP_PASSWORD --body $MicrosoftAppPassword \
+            --repo "TomMa59/myflymebot"
+gh secret set LUIS_APP_ID --body $LuisAPPId \
+            --repo "TomMa59/myflymebot"
+gh secret set LUIS_API_KEY --body $LuisAPIKey \
+            --repo "TomMa59/myflymebot"
+gh secret set LUIS_API_HOST_NAME --body $LuisAPIHostName \
+            --repo "TomMa59/myflymebot"
+gh secret set APPINSIGHTS_INSTRUMENTATION_KEY --body $InstrumentationKey \
+            --repo "TomMa59/myflymebot"
 
 # az webapp deployment source config \
 #      --branch main \
