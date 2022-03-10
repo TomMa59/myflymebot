@@ -93,7 +93,7 @@ az webapp create \
      -g myflymebot \
      -p flymebotserviceplan \
      -n myflymebottmz202203 \
-     --runtime "python:3.7"
+     --runtime "python:3.8"
 
 az bot create --appid $MicrosoftAppId \
                  --password $MicrosoftAppPassword \
@@ -130,7 +130,7 @@ az webapp config appsettings set \
 az webapp config set \
      -n myflymebottmz202203 \
      -g myflymebot \
-     --startup-file="python3.7 -m aiohttp.web -H 0.0.0.0 -P 8000 app:init_func"
+     --startup-file="python3.8 -m aiohttp.web -H 0.0.0.0 -P 8000 app:init_func"
 
 gh auth login
 gh secret set APP_ID --body $MicrosoftAppId \
