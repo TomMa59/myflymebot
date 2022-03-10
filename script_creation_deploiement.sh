@@ -29,6 +29,8 @@ az cognitiveservices account create \
       -l westeurope \
       --yes
 
+sleep 10
+
 # Luis API authentication key
 LuisAuthKey=$(az cognitiveservices account keys list \
                     --name luis-authoring \
@@ -38,9 +40,10 @@ export LuisAuthKey
 
 # Create, train and publish luis app
 python luis_app_creation_train_publish.py
+luis set --authoringKey $LuisAuthKey
 LuisAPPId=$(luis list apps --take 1 | grep -o -P -- '"id": "\K.{36}')
 export LuisAPPId
-
+echo $LuisAPPId
 # Addition of the prediction resource to the Luis app
 arm_access_token=$(az account get-access-token \
     --resource=https://management.core.windows.net/ \
@@ -53,7 +56,6 @@ jq '."accountName" = "luis-pred"' id.json > tmp.$$.json && mv tmp.$$.json id.jso
 luis set \
     --appId $LuisAPPId \
     --versionId 0.1 \
-    --authoringKey $LuisAuthKey \
     --region westeurope
 
 luis add appazureaccount \
@@ -122,7 +124,7 @@ az webapp config appsettings set \
                   LuisAPIHostName=$LuisAPIHostName \
                   MicrosoftAppId=$MicrosoftAppId \
                   MicrosoftAppPassword=$MicrosoftAppPassword \
-                  WEBSITE_WEBDEPLOY_USE_SCM=true
+                  WEBSITE_WEBDEPLOY_USE_SCM=true \
                  --output none
 
 az webapp config set \

@@ -11,7 +11,7 @@ from azure.cognitiveservices.language.luis.authoring import LUISAuthoringClient
 from msrest.authentication import CognitiveServicesCredentials
 
 #load_dotenv(find_dotenv())
-SUBSCRIPTION_KEY_ENV_NAME = os.environ.get('LuisAPIKey')
+SUBSCRIPTION_KEY_ENV_NAME = os.environ.get('LuisAuthKey')
 
 def booking_app(subscription_key):
     """Authoring.
@@ -86,6 +86,8 @@ def booking_app(subscription_key):
         endpoint = publish_result.endpoint_url + \
             "?subscription-key=" + subscription_key + "&q="
         print("Your app is published. You can now go to test it!\n{}".format(endpoint))
+        
+        return app_id
 
     except Exception as err:
         print("Encountered exception. {}".format(err))
