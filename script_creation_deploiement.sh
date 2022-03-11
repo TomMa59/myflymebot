@@ -1,37 +1,50 @@
 #!/bin/bash
 
 # Authentification
+echo "Login and Authenticate..."
 az login --output none
 az account set \
-    --subscription "OCR - Microsoft Azure"
+    --subscription "OCR - Microsoft Azure" \
+    --output none
 
 ma_localisation=westeurope
+echo "done"
 
 # Resource group creation
+echo "resource group creation..."
 az group create \
      --location $ma_localisation \
-     --name myflymebot
+     --name myflymebot \
+     --output none
+echo "done"
 
 #Luis resources creation
+echo "Luis authoring resource..."
 az cognitiveservices account create \
       -n luis-authoring  \
       -g myflymebot \
       --kind LUIS.Authoring \
       --sku F0 \
       -l $ma_localisation \
-      --yes
+      --yes \
+     --output none
+echo "done"
 
+echo "Luis prediction resource..."
 az cognitiveservices account create \
       -n luis-pred \
       -g myflymebot \
       --kind LUIS \
       --sku F0 \
       -l westeurope \
-      --yes
+      --yes \
+     --output none
+echo "done"
 
 sleep 10
 
 # Luis API authentication key
+echo "LuisAuthKey export..."
 LuisAuthKey=$(az cognitiveservices account keys list \
                     --name luis-authoring \
                     --resource-group myflymebot \
@@ -43,8 +56,10 @@ python luis_app_creation_train_publish.py
 luis set --authoringKey $LuisAuthKey
 LuisAPPId=$(luis list apps --take 1 | grep -o -P -- '"id": "\K.{36}')
 export LuisAPPId
+echo "LuisAPPId export..."
 
 # Addition of the prediction resource to the Luis app
+echo "Addition of Luis prediction resource to Luis app..."
 arm_access_token=$(az account get-access-token \
     --resource=https://management.core.windows.net/ \
     --query accessToken \
@@ -69,32 +84,45 @@ LuisAPIKey=$(az cognitiveservices account keys list \
 export LuisAPIKey
 LuisAPIHostName="westeurope.api.cognitive.microsoft.com"
 export LuisAPIHostName
+echo "done"
 
 # App service, Webapp and bot
 # Registration
 read -s -p 'Define your Microsoft App Passwords (please be careful to remember it) :' -r MicrosoftAppPassword
 export MicrosoftAppPassword
+echo "App registration..."
 az ad app create \
      --display-name "myflymebottmz202203" \
      --password $MicrosoftAppPassword \
-     --available-to-other-tenants
+     --available-to-other-tenants \
+     --output none
+echo "done"
+echo "MicrosoftAppId export..."
 MicrosoftAppId=$(az ad app list --display-name myflymebottmz202203 | grep -o -P -- '"appId": "\K.{36}')
 export MicrosoftAppId
+printf "done"
 
 # Service Plan
+echo "App Service plan creation..."
 az appservice plan create \
      -g myflymebot \
      -n flymebotserviceplan \
      --location westeurope \
-     --is-linux
+     --is-linux \
+     --output none
+echo "done"
 
 # Web App
+echo "web app creation..."
 az webapp create \
      -g myflymebot \
      -p flymebotserviceplan \
      -n myflymebottmz202203 \
-     --runtime "python:3.8"
+     --runtime "python:3.8" \
+     --output none
+echo "done"
 
+echo "Bot creation..."
 az bot create --appid $MicrosoftAppId \
                  --password $MicrosoftAppPassword \
                  --kind registration \
@@ -102,19 +130,24 @@ az bot create --appid $MicrosoftAppId \
                  --resource-group myflymebot \
                  --endpoint "https://myflymebottmz202203.azurewebsites.net/api/messages" \
                  --output none
+echo "done"
 
 # App insights
+echo "App Insights creation..."
 az monitor app-insights component create \
      --app luis-follow \
      --location westeurope \
      --kind web \
      -g myflymebot \
-     --application-type web
+     --application-type web \
+     --output none
 InstrumentationKey=$(az monitor app-insights component show --app luis-follow --resource-group myflymebot --query instrumentationKey -o tsv)
 export InstrumentationKey
+echo "done"
 
 #Deployment
 # Web App config
+echo "Web app settings update..."
 az webapp config appsettings set \
       -n myflymebottmz202203 \
       -g myflymebot \
@@ -126,14 +159,17 @@ az webapp config appsettings set \
                   MicrosoftAppPassword=$MicrosoftAppPassword \
                   WEBSITE_WEBDEPLOY_USE_SCM=true \
                   SCM_DO_BUILD_DURING_DEPLOYMENT=true \
-                 --output none
+      --output none
 
 az webapp config set \
      -n myflymebottmz202203 \
      -g myflymebot \
-     --startup-file="python3.8 -m aiohttp.web -H 0.0.0.0 -P 8000 app:init_func"
+     --startup-file="python3.8 -m aiohttp.web -H 0.0.0.0 -P 8000 app:init_func" \
+     --output none
+echo "done"
 
-# secrets definition to git hub secrets - used for unit tests during 
+# secrets definition to git hub secrets - used for unit tests during
+echo "git hub secrets definition..."
 gh auth login
 gh secret set APP_ID --body $MicrosoftAppId \
             --repo "TomMa59/myflymebot"
@@ -149,6 +185,7 @@ gh secret set APPINSIGHTS_INSTRUMENTATION_KEY --body $InstrumentationKey \
             --repo "TomMa59/myflymebot"
 
 # git hub actions defined
+echo "git hub actions definition..."
 az webapp deployment github-actions add \
       --repo "TomMa59/myflymebot" \
       -g myflymebot \
@@ -156,9 +193,13 @@ az webapp deployment github-actions add \
       -b main \
       --login-with-github
 
-# gh secret set AZURE_WEBAPP_PUBLISH_PROFILE \
-#       --body "$(az webapp deployment list-publishing-profiles \
-#       --name myflymebottmz202203 \
-#       --resource-group myflymebot \
-#       --xml)" \
-#       --repo "TomMa59/myflymebot"
+# Update publishing profile
+echo "Publish profile update..."
+gh secret set AZURE_WEBAPP_PUBLISH_PROFILE \
+       --body "$(az webapp deployment list-publishing-profiles \
+       --name myflymebottmz202203 \
+       --resource-group myflymebot \
+       --xml)" \
+       --repo "TomMa59/myflymebot"
+
+echo "All good, you can now push on git to update the Bot."
