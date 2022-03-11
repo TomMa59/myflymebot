@@ -160,15 +160,3 @@ az webapp deployment github-actions add \
 #       --resource-group myflymebot \
 #       --xml)" \
 #       --repo "TomMa59/myflymebot"
-
-# az webapp deployment source config \
-#         --branch main \
-#         --name myflymebottmz202203 \
-#         --repo-url https://github.com/TomMa59/myflymebot \
-#         --resource-group myflymebot \
-#         --repository-type github \
-#         --github-action true
-
-
-#az cognitiveservices account purge --location westeurope --resource-group myflymebot --name luis-authoring
-
