@@ -60,4 +60,4 @@ jobs:
         with:
           app-name: 'myflymebottmz202203'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_8C48DDA0F86544BD986A62CE4888F4D9 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_AB10411DC9FE405EAED60AC908462C6A }}
