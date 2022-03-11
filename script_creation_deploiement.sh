@@ -125,6 +125,7 @@ az webapp config appsettings set \
                   MicrosoftAppId=$MicrosoftAppId \
                   MicrosoftAppPassword=$MicrosoftAppPassword \
                   WEBSITE_WEBDEPLOY_USE_SCM=true \
+                  SCM_DO_BUILD_DURING_DEPLOYMENT=true \
                  --output none
 
 az webapp config set \
@@ -147,19 +148,19 @@ gh secret set APPINSIGHTS_INSTRUMENTATION_KEY --body $InstrumentationKey \
             --repo "TomMa59/myflymebot"
 
 az webapp deployment github-actions add \
-     --repo "TomMa59/myflymebot" \
-     -g myflymebot \
-     -n myflymebottmz202203 \
-     -b main \
-     --login-with-github
+      --repo "TomMa59/myflymebot" \
+      -g myflymebot \
+      -n myflymebottmz202203 \
+      -b main \
+      --login-with-github
 
-gh secret set AZURE_WEBAPP_PUBLISH_PROFILE \
-     --body "$(az webapp deployment list-publishing-profiles \
-     --name myflymebottmz202203 \
-     --resource-group myflymebot \
-     --xml)" \
-     --repo "TomMa59/myflymebot"
-     
+# gh secret set AZURE_WEBAPP_PUBLISH_PROFILE \
+#       --body "$(az webapp deployment list-publishing-profiles \
+#       --name myflymebottmz202203 \
+#       --resource-group myflymebot \
+#       --xml)" \
+#       --repo "TomMa59/myflymebot"
+
 # az webapp deployment source config \
 #         --branch main \
 #         --name myflymebottmz202203 \
