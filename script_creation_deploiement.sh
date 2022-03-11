@@ -133,6 +133,7 @@ az webapp config set \
      -g myflymebot \
      --startup-file="python3.8 -m aiohttp.web -H 0.0.0.0 -P 8000 app:init_func"
 
+# secrets definition to git hub secrets - used for unit tests during 
 gh auth login
 gh secret set APP_ID --body $MicrosoftAppId \
             --repo "TomMa59/myflymebot"
@@ -147,6 +148,7 @@ gh secret set LUIS_API_HOST_NAME --body $LuisAPIHostName \
 gh secret set APPINSIGHTS_INSTRUMENTATION_KEY --body $InstrumentationKey \
             --repo "TomMa59/myflymebot"
 
+# git hub actions defined
 az webapp deployment github-actions add \
       --repo "TomMa59/myflymebot" \
       -g myflymebot \
