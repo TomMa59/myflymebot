@@ -146,27 +146,28 @@ gh secret set LUIS_API_HOST_NAME --body $LuisAPIHostName \
 gh secret set APPINSIGHTS_INSTRUMENTATION_KEY --body $InstrumentationKey \
             --repo "TomMa59/myflymebot"
 
-gh secret set AZUREAPPSERVICE_PUBLISHPROFILE \
+az webapp deployment github-actions add \
+     --repo "TomMa59/myflymebot" \
+     -g myflymebot \
+     -n myflymebottmz202203 \
+     -b main \
+     --login-with-github
+
+gh secret set AZURE_WEBAPP_PUBLISH_PROFILE \
      --body "$(az webapp deployment list-publishing-profiles \
      --name myflymebottmz202203 \
      --resource-group myflymebot \
      --xml)" \
      --repo "TomMa59/myflymebot"
-
-az webapp deployment source config \
-        --branch main \
-        --name myflymebottmz202203 \
-        --repo-url https://github.com/TomMa59/myflymebot \
-        --resource-group myflymebot \
-        --repository-type github \
-        --github-action true
+     
+# az webapp deployment source config \
+#         --branch main \
+#         --name myflymebottmz202203 \
+#         --repo-url https://github.com/TomMa59/myflymebot \
+#         --resource-group myflymebot \
+#         --repository-type github \
+#         --github-action true
 
 
 #az cognitiveservices account purge --location westeurope --resource-group myflymebot --name luis-authoring
 
-# az webapp deployment github-actions add \
-#     --repo "TomMa59/myflymebot" \
-#     -g myflymebot \
-#     -n myflymebottmz202203 \
-#     -b main \
-#     --login-with-github
