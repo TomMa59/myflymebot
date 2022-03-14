@@ -146,7 +146,7 @@ class BookingDialog(CancelAndHelpDialog):
 
         # Offer a YES/NO prompt.
         return await step_context.prompt(
-            ConfirmPrompt.__name__, PromptOptions(prompt=MessageFactory.text(msg, msg, InputHints.expecting_input))
+            ConfirmPrompt.__name__, PromptOptions(prompt=MessageFactory.text(msg))
         )
 
     async def final_step(self, step_context: WaterfallStepContext) -> DialogTurnResult:
@@ -171,4 +171,4 @@ class BookingDialog(CancelAndHelpDialog):
             prompt_sorry_msg = MessageFactory.text(sorry_msg, sorry_msg, InputHints.ignoring_input)
             await step_context.context.send_activity(prompt_sorry_msg)
             self.telemetry_client.track_trace("NO answer", "ERROR")
-            return await step_context.end_dialog()
+        return await step_context.end_dialog()
