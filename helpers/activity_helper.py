@@ -33,6 +33,6 @@ def create_activity_reply(activity: Activity, text: str = None, locale: str = No
         ),
         text=text or "",
         locale=locale or "",
-        attachments=[],
+        attachments="",
         entities=[],
     )
