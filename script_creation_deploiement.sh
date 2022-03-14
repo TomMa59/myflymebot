@@ -100,7 +100,7 @@ echo "done"
 echo "MicrosoftAppId export..."
 MicrosoftAppId=$(az ad app list --display-name myflymebottmz202203 | grep -o -P -- '"appId": "\K.{36}')
 export MicrosoftAppId
-printf "done"
+echo "done"
 
 # Service Plan
 echo "App Service plan creation..."
