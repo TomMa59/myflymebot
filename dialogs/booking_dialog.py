@@ -146,11 +146,11 @@ class BookingDialog(CancelAndHelpDialog):
 
         # Offer a YES/NO prompt.
         return await step_context.prompt(
-            ConfirmPrompt.__name__, PromptOptions(prompt=MessageFactory.text(msg))
+            ConfirmPrompt.__name__, PromptOptions(prompt=MessageFactory.text(msg, msg, InputHints.expecting_input))
         )
 
     async def final_step(self, step_context: WaterfallStepContext) -> DialogTurnResult:
-        """Complete the interaction, sens data to Azure app insights and end the dialog."""
+        """Complete the interaction, send data to Azure app insights and end the dialog."""
         
         # Data to be tracked in app insights
         booking_details = step_context.options
@@ -163,12 +163,12 @@ class BookingDialog(CancelAndHelpDialog):
         
         #If positive answer
         if step_context.result:
-            self.telemetry_client.track_trace("POSITIVE BOOKING", "INFO")
+            self.telemetry_client.track_trace("YES answer", "INFO")
             return await step_context.end_dialog(booking_details)
         
         else:
             sorry_msg = "I am sorry, I will improve myself in the near future"
             prompt_sorry_msg = MessageFactory.text(sorry_msg, sorry_msg, InputHints.ignoring_input)
             await step_context.context.send_activity(prompt_sorry_msg)
-            self.telemetry_client.track_trace("NEGATIVE BOOKING", "ERROR")
+            self.telemetry_client.track_trace("NO answer", "ERROR")
             return await step_context.end_dialog()
