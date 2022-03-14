@@ -4,6 +4,7 @@
 
 from botbuilder.dialogs import WaterfallDialog, WaterfallStepContext, DialogTurnResult
 from botbuilder.dialogs.prompts import ConfirmPrompt, TextPrompt, PromptOptions
+from botbuilder.schema import InputHints
 from botbuilder.core import MessageFactory, BotTelemetryClient, NullTelemetryClient
 from .cancel_and_help_dialog import CancelAndHelpDialog
 
@@ -149,9 +150,25 @@ class BookingDialog(CancelAndHelpDialog):
         )
 
     async def final_step(self, step_context: WaterfallStepContext) -> DialogTurnResult:
-        """Complete the interaction and end the dialog."""
+        """Complete the interaction, sens data to Azure app insights and end the dialog."""
+        
+        # Data to be tracked in app insights
+        booking_details = step_context.options
+        properties = {}
+        properties['destination'] = booking_details.destination
+        properties['origin'] = booking_details.origin
+        properties['start_travel_date'] = booking_details.start_travel_date
+        properties['return_travel_date'] = booking_details.return_travel_date
+        properties['budget'] = booking_details.budget
+        
+        #If positive answer
         if step_context.result:
-            booking_details = step_context.options
+            self.telemetry_client.track_trace("POSITIVE BOOKING", "INFO")
             return await step_context.end_dialog(booking_details)
-
-        return await step_context.end_dialog()
+        
+        else:
+            sorry_msg = "I am sorry, I will improve myself in the near future"
+            prompt_sorry_msg = MessageFactory.text(sorry_msg, sorry_msg, InputHints.ignoring_input)
+            await step_context.context.send_activity(prompt_sorry_msg)
+            self.telemetry_client.track_trace("NEGATIVE BOOKING", "ERROR")
+            return await step_context.end_dialog()
