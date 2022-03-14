@@ -163,12 +163,12 @@ class BookingDialog(CancelAndHelpDialog):
         
         #If positive answer
         if step_context.result:
-            self.telemetry_client.track_trace("YES answer", "INFO")
+            self.telemetry_client.track_trace("VALIDATED BOOKING", properties, "INFO")
             return await step_context.end_dialog(booking_details)
         
         else:
             sorry_msg = "I am sorry, I will improve myself in the near future"
             prompt_sorry_msg = MessageFactory.text(sorry_msg, sorry_msg, InputHints.ignoring_input)
             await step_context.context.send_activity(prompt_sorry_msg)
-            self.telemetry_client.track_trace("NO answer", "ERROR")
+            self.telemetry_client.track_trace("BOOKING PREDICTION ERROR", properties, "ERROR")
         return await step_context.end_dialog()
