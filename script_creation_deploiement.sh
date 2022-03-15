@@ -122,16 +122,6 @@ az webapp create \
      --output none
 echo "done"
 
-echo "Bot creation..."
-az bot create --appid $MicrosoftAppId \
-                 --password $MicrosoftAppPassword \
-                 --kind registration \
-                 --name myflymebot \
-                 --resource-group myflymebot \
-                 --endpoint "https://myflymebottmz202203.azurewebsites.net/api/messages" \
-                 --output none
-echo "done"
-
 # App insights
 echo "App Insights creation..."
 az monitor app-insights component create \
@@ -143,6 +133,44 @@ az monitor app-insights component create \
      --output none
 InstrumentationKey=$(az monitor app-insights component show --app luis-follow --resource-group myflymebot --query instrumentationKey -o tsv)
 export InstrumentationKey
+echo "done"
+
+#API Id and key App insights
+echo "App Insights API Key creation..."
+AI_API_KEY=$(az monitor app-insights api-key create --api-key cle_bot \
+                                        --app luis-follow \
+                                        -g myflymebot \
+                                        --read-properties ReadTelemetry \
+                                        --query apiKey \
+                                        -o tsv)
+export AI_API_KEY
+
+AI_APP_ID=$(az monitor app-insights component show --app luis-follow \
+                                       --resource-group myflymebot \
+                                       --query appId \
+                                       -o tsv)
+export AI_APP_ID
+echo "done"
+
+#Bot creation
+echo "Bot creation..."
+az bot create --appid $MicrosoftAppId \
+                 --password $MicrosoftAppPassword \
+                 --kind registration \
+                 --name myflymebot \
+                 --resource-group myflymebot \
+                 --endpoint "https://myflymebottmz202203.azurewebsites.net/api/messages" \
+                 --output none
+echo "done"
+
+#Link between bot and app insights
+echo "Bot telemetry settings update..."
+az bot update -n myflymebot \
+               -g myflymebot \
+               --ai-key $InstrumentationKey \
+               --ai-app-id $AI_APP_ID \
+               --ai-api-key $AI_API_KEY \
+               --output none
 echo "done"
 
 #Deployment
