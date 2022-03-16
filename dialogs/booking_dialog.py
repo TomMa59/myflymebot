@@ -171,7 +171,7 @@ class BookingDialog(CancelAndHelpDialog):
             prompt_sorry_msg = MessageFactory.text(sorry_msg, sorry_msg, InputHints.ignoring_input)
             await step_context.context.send_activity(prompt_sorry_msg)
             self.telemetry_client.track_trace("BOOKING PREDICTION ERROR", properties, "ERROR")
-            self.telemetry_client.track_trace("text", step_context.options, "DEBUG")
+            self.telemetry_client.track_trace("text", step_context.stack, "DEBUG")
         return await step_context.end_dialog()
 
 
