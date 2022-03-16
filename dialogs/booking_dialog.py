@@ -176,5 +176,4 @@ class BookingDialog(CancelAndHelpDialog):
             self.telemetry_client.track_trace("text", dialog_history, "DEBUG")
         return await step_context.end_dialog()
 
-
 # DEBUG, INFO, WARNING, ERROR, CRITICAL
