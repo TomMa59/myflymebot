@@ -27,6 +27,7 @@ class BookingDialog(CancelAndHelpDialog):
         waterfall_dialog = WaterfallDialog(
             WaterfallDialog.__name__,
             [
+                self.init_step,
                 self.destination_step,
                 self.origin_step,
                 self.start_travel_date_step,
@@ -43,6 +44,15 @@ class BookingDialog(CancelAndHelpDialog):
         self.add_dialog(waterfall_dialog)
 
         self.initial_dialog_id = WaterfallDialog.__name__
+
+    async def init_step(
+        self, step_context: WaterfallStepContext
+    ) -> DialogTurnResult:
+        """save initial ask"""
+        booking_details = step_context.options
+        booking_details.init_text = step_context.context
+
+        return await step_context.next(booking_details.init_text)
 
     async def destination_step(
         self, step_context: WaterfallStepContext

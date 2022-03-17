@@ -5,6 +5,7 @@
 class BookingDetails:
     def __init__(
         self,
+        init_text: str = None,
         destination: str = None,
         origin: str = None,
         start_travel_date: str = None,
@@ -14,6 +15,7 @@ class BookingDetails:
     ):
         if unsupported_city is None:
             unsupported_city = []
+        self.init_text = init_text
         self.destination = destination
         self.origin = origin
         self.start_travel_date = start_travel_date
