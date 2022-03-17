@@ -1,0 +1,18 @@
+[
+  {
+    "origin": "London",
+    "return_travel_date": "april 15th",
+    "start_travel_date": "april 7th",
+    "destination": "Paris",
+    "budget": "5000$",
+    "init_text": "I want to go to Paris from London"
+  },
+  {
+    "origin": "Boston",
+    "return_travel_date": "march 15th",
+    "start_travel_date": "march 1st",
+    "destination": "Ny",
+    "budget": "700$",
+    "init_text": "I want to go to NY"
+  }
+]
