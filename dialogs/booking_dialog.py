@@ -48,9 +48,9 @@ class BookingDialog(CancelAndHelpDialog):
     async def init_step(
         self, step_context: WaterfallStepContext
     ) -> DialogTurnResult:
-        """save initial ask"""
+        """retrieve initial text"""
         booking_details = step_context.options
-        booking_details.init_text = step_context.context
+        booking_details.init_text = step_context.result
 
         return await step_context.next(booking_details.init_text)
 
@@ -59,7 +59,6 @@ class BookingDialog(CancelAndHelpDialog):
     ) -> DialogTurnResult:
         """Prompt for destination."""
         booking_details = step_context.options
-
         if booking_details.destination is None:
             return await step_context.prompt(
                 TextPrompt.__name__,
@@ -165,7 +164,6 @@ class BookingDialog(CancelAndHelpDialog):
         # Data to be tracked in app insights
         booking_details = step_context.options
         properties = {}
-        properties['init_text'] = booking_details.init_text
         properties['destination'] = booking_details.destination
         properties['origin'] = booking_details.origin
         properties['start_travel_date'] = booking_details.start_travel_date
@@ -181,6 +179,7 @@ class BookingDialog(CancelAndHelpDialog):
             sorry_msg = "I am sorry, I will improve myself in the near future"
             prompt_sorry_msg = MessageFactory.text(sorry_msg, sorry_msg, InputHints.ignoring_input)
             await step_context.context.send_activity(prompt_sorry_msg)
+            properties['init_text'] = booking_details.init_text
             self.telemetry_client.track_trace("BOOKING PREDICTION ERROR", properties, "ERROR")
         return await step_context.end_dialog()
 
