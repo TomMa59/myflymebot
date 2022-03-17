@@ -165,6 +165,7 @@ class BookingDialog(CancelAndHelpDialog):
         # Data to be tracked in app insights
         booking_details = step_context.options
         properties = {}
+        properties['init_text'] = booking_details.init_text
         properties['destination'] = booking_details.destination
         properties['origin'] = booking_details.origin
         properties['start_travel_date'] = booking_details.start_travel_date
