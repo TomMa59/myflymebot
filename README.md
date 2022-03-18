@@ -8,7 +8,8 @@
 ## Install
 
 ```sh
-Deeloped using conda and python 3.8.12, dependancies installed with :
+conda create -n myflymebot python=3.8 -y
+conda activate myflymebot
 pip install -r requirements.txt
 ```
 
