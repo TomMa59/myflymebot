@@ -1,6 +1,24 @@
-This git repository contains:
+<h1 align="center">Welcome to myflymebot 👋</h1>
+<p>
+  <img alt="Version" src="https://img.shields.io/badge/version-v1.0-blue.svg?cacheSeconds=2592000" />
+</p>
 
-- the treated examples to be uploaded for creating the LUIS application.
-- the script luis_app_creation_train_publish.py creating, training and publishing automatically the Luis app.
-- the Bot to be uploaded.
-The following of the project using Qzure app insights.
+> This project, part of the OCR course regarding Artificial Intelligence, contains the entire data to create, train and publish a bot using LUIS and Azure.
+
+## Install
+
+```sh
+pip install -r requirements.txt
+```
+
+## Author
+
+👤 **Thomas Maniez**
+
+
+## Show your support
+
+Give a ⭐️ if this project helped you!
+
+***
+_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
