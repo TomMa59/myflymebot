@@ -10,6 +10,7 @@ from botbuilder.dialogs import (
 from botbuilder.dialogs.prompts import TextPrompt, PromptOptions
 from botbuilder.core import (
     MessageFactory,
+    TurnContext,
     BotTelemetryClient,
     NullTelemetryClient,
 )
@@ -87,6 +88,11 @@ class MainDialog(ComponentDialog):
         )
 
         if intent == Intent.BOOK_FLIGHT.value and luis_result:
+            # Show a warning for Origin and Destination if we can't resolve them.
+            await MainDialog._show_warning_for_unsupported_cities(
+                step_context.context, luis_result
+            )
+
             # Run the BookingDialog giving it whatever details we have from the LUIS call.
             return await step_context.begin_dialog(self._booking_dialog_id, luis_result)
 
@@ -118,3 +124,22 @@ class MainDialog(ComponentDialog):
 
         prompt_message = "What else can I do for you?"
         return await step_context.replace_dialog(self.id, prompt_message)
+    
+    @staticmethod
+    async def _show_warning_for_unsupported_cities(
+        context: TurnContext, luis_result: BookingDetails
+    ) -> None:
+        """
+        Shows a warning if the requested From or To cities are recognized as entities but they are not in the Airport entity list.
+        In some cases LUIS will recognize the From and To composite entities as a valid cities but the From and To Airport values
+        will be empty if those entity values can't be mapped to a canonical item in the Airport.
+        """
+        if luis_result.unsupported_city:
+            message_text = (
+                f"Sorry but the following cities are not supported:"
+                f" {', '.join(luis_result.unsupported_city)}"
+            )
+            message = MessageFactory.text(
+                message_text, message_text, InputHints.ignoring_input
+            )
+            await context.send_activity(message)
