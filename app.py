@@ -17,7 +17,6 @@ from botbuilder.core import (
     ConversationState,
     MemoryStorage,
     UserState,
-    TelemetryLoggerMiddleware
 )
 from botbuilder.core.integration import aiohttp_error_middleware
 from botbuilder.schema import Activity
@@ -55,7 +54,7 @@ ADAPTER = AdapterWithErrorHandler(SETTINGS, CONVERSATION_STATE)
 # less frequent updates.
 INSTRUMENTATION_KEY = CONFIG.APPINSIGHTS_INSTRUMENTATION_KEY
 TELEMETRY_CLIENT = ApplicationInsightsTelemetryClient(
-    INSTRUMENTATION_KEY, telemetry_processor=AiohttpTelemetryProcessor(), client_queue_size=5
+    INSTRUMENTATION_KEY, telemetry_processor=AiohttpTelemetryProcessor(), client_queue_size=1
 )
 
 # Create dialogs and Bot
