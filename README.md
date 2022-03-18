@@ -8,6 +8,7 @@
 ## Install
 
 ```sh
+Deeloped using conda and python 3.8.12, dependancies installed with :
 pip install -r requirements.txt
 ```
 
