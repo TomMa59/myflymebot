@@ -225,6 +225,8 @@ az webapp deployment github-actions add \
       -b main \
       --token $github_access_token
 
+sleep 5
+
 # Update publishing profile
 echo "Publish profile update..."
 gh secret set AZURE_WEBAPP_PUBLISH_PROFILE \
