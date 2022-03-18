@@ -63,10 +63,6 @@ class LuisHelper:
                 if len(to_entities) > 0:
                     if recognizer_result.entities.get("dst_city", [{"$instance": {}}])[0]:
                         result.destination = to_entities[0]["text"].capitalize()
-                    else:
-                        result.unsupported_city.append(
-                            to_entities[0]["text"].capitalize()
-                        )
 
                 from_entities = recognizer_result.entities.get("$instance", {}).get(
                     "or_city", []
@@ -74,10 +70,6 @@ class LuisHelper:
                 if len(from_entities) > 0:
                     if recognizer_result.entities.get("or_city", [{"$instance": {}}])[0]:
                         result.origin = from_entities[0]["text"].capitalize()
-                    else:
-                        result.unsupported_city.append(
-                            from_entities[0]["text"].capitalize()
-                        )
 
                 start_date_entities = recognizer_result.entities.get("$instance", {}).get(
                     "str_date", []
