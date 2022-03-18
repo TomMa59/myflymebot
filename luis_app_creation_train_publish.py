@@ -2,15 +2,12 @@ import os
 import json
 import time
 import datetime
-#from pprint import pprint
-#from dotenv import load_dotenv, find_dotenv
 import numpy as np
 from tqdm import tqdm
 
 from azure.cognitiveservices.language.luis.authoring import LUISAuthoringClient
 from msrest.authentication import CognitiveServicesCredentials
 
-#load_dotenv(find_dotenv())
 SUBSCRIPTION_KEY_ENV_NAME = os.environ.get('LuisAuthKey')
 
 def booking_app(subscription_key):

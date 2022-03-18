@@ -1,12 +1,3 @@
-# import json
-# from os import path
-# from typing import Dict, Tuple, Union
-# from unittest import mock
-# from unittest.mock import Mock
-# from msrest import Deserializer
-# from requests import Session
-# from requests.models import Response
-
 from aiounittest.case import AsyncTestCase
 
 from config import DefaultConfig
@@ -17,6 +8,12 @@ from azure.cognitiveservices.language.luis.runtime import LUISRuntimeClient
 from msrest.authentication import CognitiveServicesCredentials
 
 class LuisRecognizerTest(AsyncTestCase):
+    """
+    This set of 3 tests will:
+    - Check the endpoint construction of the LUIs recognizer.
+    - check no arg for the LuisRecognizer.
+    - Try to recognize intent and entities to the Luis app, assertions for intent and entities are checked.
+    """
     CONFIG = DefaultConfig()
     _luisAppId: str = CONFIG.LUIS_APP_ID
     _subscriptionKey: str = CONFIG.LUIS_API_KEY

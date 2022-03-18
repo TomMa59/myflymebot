@@ -172,5 +172,3 @@ class BookingDialog(CancelAndHelpDialog):
             properties['init_text'] = booking_details.init_text
             self.telemetry_client.track_trace("BOOKING PREDICTION ERROR", properties, "ERROR")
         return await step_context.end_dialog()
-
-# DEBUG, INFO, WARNING, ERROR, CRITICAL

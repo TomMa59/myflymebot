@@ -212,6 +212,10 @@ gh secret set LUIS_API_HOST_NAME --body $LuisAPIHostName \
 gh secret set APPINSIGHTS_INSTRUMENTATION_KEY --body $InstrumentationKey \
             --repo "TomMa59/myflymebot"
 
+echo "get git hub access token..."
+read -s -p 'Please enter your github access token: ' -r github_access_token
+export github_access_token
+
 # git hub actions defined
 echo "git hub actions definition..."
 az webapp deployment github-actions add \
@@ -219,7 +223,7 @@ az webapp deployment github-actions add \
       -g myflymebot \
       -n myflymebottmz202203 \
       -b main \
-      --login-with-github
+      --token $github_access_token
 
 # Update publishing profile
 echo "Publish profile update..."
