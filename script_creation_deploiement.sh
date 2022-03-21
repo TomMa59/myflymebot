@@ -36,7 +36,7 @@ az cognitiveservices account create \
       -g myflymebot \
       --kind LUIS \
       --sku F0 \
-      -l westeurope \
+      -l $ma_localisation \
       --yes \
      --output none
 echo "done"
@@ -71,7 +71,7 @@ jq '."accountName" = "luis-pred"' id.json > tmp.$$.json && mv tmp.$$.json id.jso
 luis set \
     --appId $LuisAPPId \
     --versionId 0.1 \
-    --region westeurope
+    --region $ma_localisation
 
 luis add appazureaccount \
     --in id.json \
@@ -107,7 +107,7 @@ echo "App Service plan creation..."
 az appservice plan create \
      -g myflymebot \
      -n flymebotserviceplan \
-     --location westeurope \
+     --location $ma_localisation \
      --is-linux \
      --output none
 echo "done"
@@ -126,7 +126,7 @@ echo "done"
 echo "App Insights creation..."
 az monitor app-insights component create \
      --app luis-follow \
-     --location westeurope \
+     --location $ma_localisation \
      --kind web \
      -g myflymebot \
      --application-type web \
