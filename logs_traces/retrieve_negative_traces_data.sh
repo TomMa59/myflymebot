@@ -11,6 +11,6 @@ az account set \
 echo $(az monitor app-insights query -a luis-follow \
                                --resource-group myflymebot \
                                --analytics-query "traces" \
-                               --offset 2h20m) | jq '.' > trace_logs.json
+                               --offset 5d) | jq '.' > trace_logs.json
 
 python treat_neg_traces.py
